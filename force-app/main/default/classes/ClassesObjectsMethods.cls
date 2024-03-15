@@ -26,7 +26,7 @@
  * Math class: https://developer.salesforce.com/docs/atlas.en-us.apexref.meta/apexref/apex_methods_system_math.htm
  * Classes: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_understanding.htm
  *
- * @author Your Name
+ * @author Jene Fuller
  */
 
 public with sharing class ClassesObjectsMethods {
@@ -40,17 +40,31 @@ public with sharing class ClassesObjectsMethods {
      */
     public static List<String> practiceStringMethods() {
         // Initialize a String with 'Hello, Salesforce!'
-        
-        // Get the length of the String        
-        // Get a substring of the String of the first 5 characters
-        // Convert the String to lower case
-        
-        // Return the list with the string data
-        // In the first position add the string length
-        // In the second position add the substring
-        // In the third position add the string in lower case
+        String hello = 'Hello, Salesforce!';
 
-        return null; // Replace null with the variable you used to store the result
+        // Get the length of the String
+        Integer countHello = hello.length();
+        
+
+        // Get a substring of the String of the first 5 characters
+        String findHello = hello.substring(0, 5);
+
+        // Convert the String to lower case
+        String lowercaseHello = hello.toLowerCase();
+
+        // Return the list with the string data
+        List <String> listOfStrResults = new List <String>();
+
+        // In the first position add the string length
+        listOfStrResults.add(countHello.toString());
+
+        // In the second position add the substring
+        listOfStrResults.add(findHello);
+
+        // In the third position add the string in lower case
+        listOfStrResults.add(lowercaseHello);
+
+        return listOfStrResults;
     }
 
     /**
@@ -62,14 +76,22 @@ public with sharing class ClassesObjectsMethods {
      */
     public static List<Boolean> checkStringContent(String input) {
         // Initialize a list to store the results
-        
+        List <Boolean> strList = new List <Boolean>();
+
         // Check if the string starts with 'Sales'
-        
+        Boolean startOfInput = input.startsWith('Sales');
+
         // Check if the string ends with 'Force'
+        Boolean endOfInput = input.endsWith('Force');
         
         // Check if the string contains 'Awesome'
-        
-        return null; // Replace null with the variable you used to store the result
+        Boolean containsInput = input.contains('Awesome');
+
+        //store values in strList
+        strList.add(startOfInput);
+        strList.add(endOfInput);
+        strList.add(containsInput);
+        return strList;
     }
 
     /**
@@ -81,15 +103,22 @@ public with sharing class ClassesObjectsMethods {
      */
     public static String removeDuplicateWords(String sentence) {
         // Split the sentence into words
+        List<String> separateWords = sentence.split(' ');   //store words in a list
 
         // Create a set to store the unique words
+        Set<String> parseThruDupesSet = new Set<String>();
 
         // Add each word to the set
+        // for (String word : separateWords) {
+        //     parseThruDupesSet.add(word);
+        // }
+            parseThruDupesSet.addAll(separateWords);
 
         // Join the unique words back into a sentence
+        String uniqueWords = String.join(new List<String> (parseThruDupesSet), ' ');
 
-        // Return the sentence with unique words
-        return null; // Replace null with the variable you used to store the result
+        // Return the sentence with unique words        
+        return uniqueWords;
     }
 
     /**
@@ -101,17 +130,17 @@ public with sharing class ClassesObjectsMethods {
      * @return The number of vowels in the string.
      */
     public static Integer countVowels(String str) {
-        // Initialize the result Integer
+        // Initialize the result Integerx
+        Integer vowelCount = 0;
+        String vowels = 'aeiou';
 
-        /*
-        for () {
-            // get individual characters from the string - hint use substring or split
-            // check if the character is a vowel
-            // if it is a vowel, increment the result Integer
+        // need to read through a string
+        for (Integer i = 0; i < str.length(); i++) {
+            if (str.substring(i, i + 1).containsAny(vowels)){
+                vowelCount++;
+            }
         }
-        */
-
-        return null; // Replace null with the variable you used to store the result
+        return vowelCount;
     }
 
     /**
@@ -126,33 +155,42 @@ public with sharing class ClassesObjectsMethods {
         List<String> scientistNames = new List<String>{'Tim Berners-Lee', 'Alan Turing', 'Grace Hopper', 'Donald Knuth', 'Guido van Rossum', 'Ken Thompson', 'Stephen Hawking'};
 
         // The variable to store the concatenated string
+        String concatName = '';
 
         // Loop through the list of scientists' names
-
-            // If the name doesn't contain the letter 'G', skip this iteration
-
-            // Add the name to the result string, followed by a comma
-
+        For (String name : scientistNames){
+            // if name with G is found then add, else skip
+            if (name.containsAny('gG')){
+               concatName += name + ',';
+            } else {
+                // If the name doesn't contain the letter 'G', skip this iteration
+                continue;
+            }
+        }       
+        // Add the name to the result string, followed by a comma
         // Remove the last comma from the result string
-
-        return null; // Replace null with the variable you used to store the result
+        concatName = concatName.substring(0, concatName.length()-1);
+        return concatName; 
     }
 
     /**
      * Question 6
      * This method calculates the absolute value of the difference between of two input numbers that are raised to the 2nd power.
-     * Example: calculateDifferenceOfSquares(3, 4) should return 7.
+     ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,          Example: calculateDifferenceOfSquares(3, 4) should return 7.
      * @param a The first number.
      * @param b The second number.
      * @return The absolute value of the difference
      */
     public static Double calculateDifferenceOfSquares(Double a, Double b) {
         // Square the input numbers using the Math.pow() function
+        Double abDiff = 0;
+        Double dExpPow2 = 0;
 
+        dExpPow2= math.pow(a, 2) - math.pow(b, 2);
         // Calculate the absolute difference using Math.abs() function
-
+        abDiff = Math.abs(dExpPow2);
         // Return the result
-        return null; // Replace null with the variable you used to store the result
+        return abDiff;
     }
 
     /**
@@ -163,9 +201,9 @@ public with sharing class ClassesObjectsMethods {
      */
     public static Integer generateRandomNumber() {
         // Use Math class to generate number between 50 and 100
-
+        Integer randNum = (Integer)(Math.random() * 100);
         // Return the random integer
-        return null; // Replace null with the variable you used to store the result
+        return randNum;
     }
 
     /**
@@ -176,11 +214,10 @@ public with sharing class ClassesObjectsMethods {
      */
     public static String getCurrentDate() {
         // Get the todays date
-
-        // Format the current date
-
+        // Format the current date        
+        String glamDate = Date.today().format();
         // Return the result
-        return null; // Replace null with the variable you used to store the result
+        return glamDate;
     }
 
     /**
@@ -192,13 +229,22 @@ public with sharing class ClassesObjectsMethods {
     public static String getDayOfWeek(DateTime dt) {
         // Define a map of day of the week as a key and day number as the value
         // Monday = 1, Tuesday = 2, etc.
+        Map<String,Integer> dayOfWeek = New Map <String, Integer>();
+        dayOfWeek.put('Sunday',    1);
+        dayOfWeek.put('Monday',    2);
+        dayOfWeek.put('Tuesday',   3);
+        dayOfWeek.put('Wednesday', 4);
+        dayOfWeek.put('Thursday',  5);
+        dayOfWeek.put('Friday',    6);
+        dayOfWeek.put('Saturday',  7);
 
         // Get the day name using .format('EEEE');
-
+        String flyDate = Datetime.now().format('EEEE');
+        
         // Get the day number from the map using the day name
-
+        
         // Return the result as a string
-        return null; // Replace null with the variable you used to store the result
+        return flyDate; // Replace null with the variable you used to store the result
     }
 
 
@@ -234,6 +280,7 @@ public with sharing class ClassesObjectsMethods {
         // Book constructor to initialize the title and author
         public Book() {
             // Initialize the title and author
+            String doSomething;
         }
     
         // Method that returns the details of the book

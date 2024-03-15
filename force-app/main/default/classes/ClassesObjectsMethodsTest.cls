@@ -79,6 +79,7 @@ public with sharing class ClassesObjectsMethodsTest {
 
     }
 
+    
     @IsTest
     static void testCalculateDifferenceOfSquares() {
         // Test case 1
