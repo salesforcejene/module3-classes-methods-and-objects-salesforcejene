@@ -486,6 +486,7 @@ public with sharing class ClassesObjectsMethods {
      * @return The Person object of the older person.
      */
     public static Person getOlderPerson(Person person1, Person person2) {
+        //Codenitional logic to determine oldest person
         if (person1.age > person2.age) {
             return person1;
 
